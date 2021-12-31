@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource _audioSource;
     public static float[] Music = new float[512];
     public static float[] _freq = new float[8];
+    public static float[] _Buffer = new float[8];
+    private float[] _BufferD = new float[8];
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -16,6 +18,7 @@ public class AudioManager : MonoBehaviour
     {
         GetSpectrumAudioSource();
         MakeBand();
+        BandB();
     }
 
     void GetSpectrumAudioSource()
@@ -46,6 +49,24 @@ public class AudioManager : MonoBehaviour
             average /= B_count;
 
             _freq[i] = average * 10;
+        }
+    }
+
+    void BandB()
+    {
+        for (int k = 0; k < 8; k++)
+        {
+            if (_freq[k] > _Buffer[k])
+            {
+                _Buffer[k] = _freq[k];
+                _BufferD[k] = 0.005f;
+            }
+
+            if (_freq[k] < _Buffer[k])
+            {
+                _Buffer[k] -= _BufferD[k];
+                _BufferD[k] *= 1.2f;
+            }
         }
     }
 }
