@@ -16,6 +16,7 @@ public class PCube : MonoBehaviour
     {   
         transform.localScale = new Vector3(transform.localScale.x, (AudioManager._Buffer[_band] * scaleM) + SScale,
             transform.localScale.z);
+        
         transform.localScale = new Vector3(transform.localScale.x, (AudioManager._freq[_band] * scaleM) + SScale,
             transform.localScale.z);
     }
