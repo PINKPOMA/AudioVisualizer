@@ -27,7 +27,7 @@ public class Instantiate512 : MonoBehaviour
         {
             if (_Cube != null)
             {
-                _Cube[i].transform.localScale = new Vector3(10, (AudioManager.Music[i] * _MXScale) + 2, 10);
+                _Cube [i].transform.localScale = new Vector3(1, (AudioManager.Music[i] * _MXScale) + 2, 1);
             }
 
         }
